@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_app/data/prayer_times_data.dart';
-
-import 'prayer_times_api.dart';
-import 'prayer_times_save.dart';
-
+import 'api_helper.dart';
+import 'database.dart';
 
 class PrayerTimesProvider extends ChangeNotifier {
   final PrayerTimesAPI _prayerTimesAPI = PrayerTimesAPI();
@@ -26,10 +24,10 @@ class PrayerTimesProvider extends ChangeNotifier {
   dynamic get hijriDate => _hijriDate;
 
   PrayerTimesProvider() {
-    _loadSavedPrayerTimes();
+    loadSavedPrayerTimes();
   }
 
-  Future<void> _loadSavedPrayerTimes() async {
+  Future<void> loadSavedPrayerTimes() async {
     _isLoading = true;
     notifyListeners();
 
@@ -40,14 +38,14 @@ class PrayerTimesProvider extends ChangeNotifier {
           .toList();
       _hijriDate = _prayerTimes['hijriDate'];
     } catch (e) {
-      // Handle error, maybe show a snackbar
+      // Handle error, maybe show a snackbar here if needed.
     } finally {
       _isLoading = false;
       notifyListeners();
     }
   }
 
-  Future<void> getPrayerTimes() async {
+  Future<void> getPrayerTimes(BuildContext context) async {
     _isLoading = true;
     notifyListeners();
 
@@ -67,7 +65,9 @@ class PrayerTimesProvider extends ChangeNotifier {
 
       _hijriDate = _prayerTimes['hijriDate'];
     } catch (e) {
-      // Handle error, maybe show a snackbar
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error loading prayer times: $e')),
+      );
     } finally {
       _isLoading = false;
       notifyListeners();

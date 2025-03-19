@@ -26,24 +26,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Icon(Icons.book_rounded), label: 'Quran'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.timelapse), label: 'Prayer times'),
+    return SafeArea(
+      child: Scaffold(
         
-          BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book), label: 'Azkar'),
-        
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
+        body: _screens[_selectedIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: Icon(Icons.book_rounded), label: 'Quran'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.timelapse), label: 'Prayer times'),
+          
+            BottomNavigationBarItem(
+                icon: Icon(Icons.menu_book), label: 'Azkar'),
+          
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }
