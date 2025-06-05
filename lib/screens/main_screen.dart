@@ -13,8 +13,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static final List<Widget> _screens = <Widget>[
-    QuranPage(),
     PrayerTimes(),
+    QuranPage(),
     AzkarScreen()
   ];
 
@@ -33,9 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                icon: Icon(Icons.book_rounded), label: 'Quran'),
-            BottomNavigationBarItem(
                 icon: Icon(Icons.timelapse), label: 'Prayer times'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.book_rounded), label: 'Quran'),
           
             BottomNavigationBarItem(
                 icon: Icon(Icons.menu_book), label: 'Azkar'),

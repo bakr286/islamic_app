@@ -1,3 +1,6 @@
 {
-    "cmake.sourceDirectory": "E:/Flutter Projects/islamic_app/linux"
+    "cmake.sourceDirectory": "E:/Flutter Projects/islamic_app/linux",
+    "files.associations": {
+        "sstream": "cpp"
+    }
 }

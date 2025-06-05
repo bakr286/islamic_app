@@ -19,7 +19,6 @@ class _QuranPageState extends State<QuranPage> {
   Widget build(BuildContext context) {
     return QuranLibraryScreen(
       isDark: Theme.of(context).brightness == Brightness.dark,
-      showAyahBookmarkedIcon: true,
-      ayahIconColor: Color(0xffcdad80),);
+      showAyahBookmarkedIcon: true,);
   }
 }

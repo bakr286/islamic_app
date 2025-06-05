@@ -35,8 +35,7 @@ class DatabaseHelper {
         prayer_name TEXT,
         prayer_time TEXT,
         hijri_day INTEGER,
-        hijri_month TEXT,
-        hijri_year INTEGER
+        hijri_month TEXT
       )
     ''');
   }
@@ -59,7 +58,6 @@ class DatabaseHelper {
           'prayer_time': entry.value.toString(),
           'hijri_day': hijriDate['day'],
           'hijri_month': hijriDate['month']['ar'],
-          'hijri_year': hijriDate['year'],
         },
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
@@ -75,14 +73,23 @@ class DatabaseHelper {
     Map<String, dynamic> prayerTimes = {};
     Map<String, dynamic> hijriDate = {};
 
-    for (var map in maps) {
-      prayerTimes[map['prayer_name']] = map['prayer_time'];
-      hijriDate['day'] = map['hijri_day'];
-      hijriDate['month'] = {'ar': map['hijri_month']};
-      hijriDate['year'] = map['hijri_year'];
+    // Fetch hijri date separately
+    final List<Map<String, dynamic>> hijriMaps = await db.query(
+      'prayer_times',
+      columns: ['hijri_day', 'hijri_month'],
+      limit: 1,
+    );
+
+    if (hijriMaps.isNotEmpty) {
+      hijriDate['day'] = hijriMaps[0]['hijri_day'];
+      hijriDate['month'] = {'ar': hijriMaps[0]['hijri_month']};
     }
 
-    if (maps.isNotEmpty) {
+    for (var map in maps) {
+      prayerTimes[map['prayer_name']] = map['prayer_time'];
+    }
+
+    if (hijriDate.isNotEmpty) {
       prayerTimes['hijriDate'] = hijriDate;
     }
 
