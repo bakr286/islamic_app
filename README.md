@@ -15,6 +15,7 @@ This Flutter application provides Muslims with essential tools for daily practic
     *   Clean and user-friendly interface for reading the Quran.
 *   **Prayer Times:**
     *   Accurate prayer times calculated based on your city and country.
+    *   Notifications scheduled for each prayer time with custom notificaion sound
     *   Displays Fajr, Dhuhr, Asr, Maghrib, and Isha times.
     *   Option to set custom locations.
 *   **Azkar:**
